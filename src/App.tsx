@@ -13,16 +13,21 @@ function App() {
         <>
             <AppPage title={'App Component'}/>
             <h2>Rating #1</h2>
-            <Rating val={4}/>
+            <Rating value={4}/>
             <h2>Rating #2</h2>
-            <Rating val={2}/>
-            <Accordion/>
+            <Rating value={2}/>
+            <Accordion titleValue={'Menu list№ 1'} isCollapsed={true}/>
+            <Accordion titleValue={'Menu list№ 2'} isCollapsed={false}/>
         </>
     );
 }
 
-function AppPage(props: any) {
-    
+type PagePropsTitle = {
+    title: string;
+}
+
+function AppPage(props: PagePropsTitle) {
+
     console.log('AppPage rendered');
     return (
         <h1>

@@ -1,24 +1,24 @@
 import React from "react";
 
-interface Val {
-    val: number;
+type RatingProps = {
+    value: number;
 }
 
-function Rating(props: Val) {
+function Rating(props: RatingProps) {
     console.log('Rating rendered');
     return (
         <div>
-            {Array(5).fill('').map((el, ind) => <Star key={ind} starIndex={ind} param={props.val}/>)}
+            {Array(5).fill('').map((el, ind) => <Star key={ind} starIndex={ind} param={props.value}/>)}
         </div>
     )
 }
 
-interface Star {
+type StarProps = {
     starIndex: number;
     param: number;
 }
 
-function Star(props: Star) {
+function Star(props: StarProps) {
 
     console.log('Star rendered');
     return (
