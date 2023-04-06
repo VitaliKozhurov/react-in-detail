@@ -1,0 +1,50 @@
+.parent{
+    display: flex;
+    margin-top: 40px;
+}
+
+.on{
+    width: 80px;
+    height: 80px;
+    border-radius: 5px;
+    border: solid 2px black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.off{
+    width: 80px;
+    height: 80px;
+    border-radius: 5px;
+    border: solid 2px black;  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.lamp{
+    margin-left: 50px;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: solid 2px black; 
+}
+
+.greenOn{
+    background-color: lawngreen;
+}
+
+.redOff{
+    background-color: rgb(252, 0, 0);
+}
+
+.lampOn{
+    background-color: lawngreen;
+}
+
+.lampOff{
+    background-color: rgb(252, 0, 0);
+}
