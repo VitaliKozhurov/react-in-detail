@@ -2,7 +2,7 @@ import React from "react";
 
 type AccordionProps = {
     titleValue: string;
-    isCollapsed: boolean;
+    isCollapsed?: boolean;  // опциональный параметр
 }
 
 function Accordion(props: AccordionProps) {
@@ -10,7 +10,7 @@ function Accordion(props: AccordionProps) {
     return (
         <>
             <AccordionTitle title={props.titleValue}/>
-            {props.isCollapsed && <AccordionBody/>}
+            {!props.isCollapsed && <AccordionBody/>}
         </>
     )
 }
