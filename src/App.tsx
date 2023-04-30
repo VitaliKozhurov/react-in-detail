@@ -10,7 +10,9 @@ import {UnControlledRating} from './components/UnControlledRating/UnControlledRa
 function App() {
     // описываем логику компоненты
     console.log('App rendered');
-
+    const [ratingValue, setRatingValue] = useState<number>(0);
+    const [isCollapsed, setIsCollapsed] = useState<boolean>(false);
+    const [on, setOn] = useState<boolean>(true);
     // возвращаем JSX разметку
     return (
         <>
@@ -21,9 +23,11 @@ function App() {
             {/*<Rating value={2}/>*/}
             {/* <Accordion titleValue={'Menu list№ 1'} isCollapsed={true}/>
             <Accordion titleValue={'Menu list№ 2'} isCollapsed={false}/> */}
-            <OnOffComponent />
-            <UnControlledAccordion title={'My accordion'}/>
-            <UnControlledRating/>
+            <OnOffComponent isOn={on} setIsOn={setOn} />
+            {/*<UnControlledAccordion title={'My accordion'}/>
+            <UnControlledRating/>*/}
+            <Rating value={ratingValue} setRatingValue={setRatingValue}/>
+            <Accordion titleValue={'Menu list№ 1'} isCollapsed={isCollapsed} setCollapsedState={setIsCollapsed}/>
         </>
     );
 }

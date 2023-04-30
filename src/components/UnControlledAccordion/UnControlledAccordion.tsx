@@ -15,7 +15,6 @@ export const UnControlledAccordion:React.FC<PropsType> = (props) => {
         setAccordionState(!accordionState);
     }
 
-
     return (
         <>
             <AccordionTitle title={props.title} onTitleClick={onTitleClick}/>

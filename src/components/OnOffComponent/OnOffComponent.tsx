@@ -3,27 +3,39 @@ import s from './OnOffComponent.module.css';
 import clsx from 'clsx';
 
 
-export const OnOffComponent = () => {
-    const [on, setOn] = useState(true);
-    console.log('Render')
-    // Style
-    const onStyle = clsx(s.on, {[s.greenOn]: on});
-    const ofStyle = clsx(s.off, {[s.redOff]: !on});
-    const indicatorStyle = clsx(s.lamp, {[s.lampOn]: on, [s.lampOff]: !on});
+type OnOffComponentPropsType = {
+    isOn:boolean
+    /**
+     * function change settings mode
+     * @param value boolean on or off
+     */
+    setIsOn:(value:boolean)=>void
+}
 
-    const onButtonHandler = (value: boolean) => {
-        setOn(value);
+export const OnOffComponent = (props:OnOffComponentPropsType) => {
+
+    // Style
+    const onStyle = clsx(s.on, {[s.greenOn]: props.isOn});
+    const ofStyle = clsx(s.off, {[s.redOff]: !props.isOn});
+    const indicatorStyle = clsx(s.lamp, {[s.lampOn]: props.isOn, [s.lampOff]: !props.isOn});
+
+    const onButtonHandler = () => {
+        props.setIsOn(true);
+    }
+
+    const ofButtonHandler = ()=>{
+        props.setIsOn(false);
     }
 
 
     return (
         <div className={s.parent}>
             <button
-                onClick={() => setOn(true)}
+                onClick={onButtonHandler}
                 className={onStyle}>On
             </button>
             <button
-                onClick={() => onButtonHandler(false)}
+                onClick={ofButtonHandler}
                 className={ofStyle}>Off
             </button>
             <div className={indicatorStyle}></div>

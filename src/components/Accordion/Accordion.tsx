@@ -3,25 +3,31 @@ import React from "react";
 type AccordionProps = {
     titleValue: string;
     isCollapsed?: boolean;  // опциональный параметр
+    /**
+     * function for set state accordion
+     * @param value mean that accordion opened or closed
+     */
+    setCollapsedState:(value:boolean)=>void
 }
 
 function Accordion(props: AccordionProps) {
-    console.log('Accordion rendered');
+
     return (
         <>
-            <AccordionTitle title={props.titleValue}/>
+            <AccordionTitle title={props.titleValue} setCollapsedState={()=>props.setCollapsedState(!props.isCollapsed)} />
             {!props.isCollapsed && <AccordionBody/>}
         </>
     )
 }
 
 type AccordionPropsTitle = {
-    title: string;
+    title: string
+    setCollapsedState:()=>void
 }
 
 function AccordionTitle(props: AccordionPropsTitle) {
-    console.log('AccordionTitle rendered');
-    return <h3>{props.title}</h3>;
+
+    return <h3 onClick={props.setCollapsedState}>{props.title}</h3>;
 }
 
 function AccordionBody() {

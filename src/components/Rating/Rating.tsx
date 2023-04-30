@@ -1,14 +1,19 @@
-import React from "react";
+import React from 'react';
 
 type RatingProps = {
     value: number;
+    /**
+     * Function that change star rating
+     * @param value is clicked item
+     */
+    setRatingValue: (value: number) => void
 }
 
 function Rating(props: RatingProps) {
-    console.log('Rating rendered');
     return (
         <div>
-            {Array(5).fill('').map((el, ind) => <Star key={ind} starIndex={ind} param={props.value}/>)}
+            {Array(5).fill('').map((el, ind) => <Star key={ind} starIndex={ind} param={props.value}
+                                                      setRating={() => props.setRatingValue(ind + 1)} />)}
         </div>
     )
 }
@@ -16,17 +21,15 @@ function Rating(props: RatingProps) {
 type StarProps = {
     starIndex: number;
     param: number;
+    setRating: () => void
 }
 
 function Star(props: StarProps) {
 
-    console.log('Star rendered');
     return (
         <>
-            {props.starIndex < props.param
-                ? <span style={{fontSize: '32px'}}> &#9733;</span>
-                : <span style={{fontSize: '32px'}}> &#9734;</span>
-            }
+            <span onClick={props.setRating}>{props.starIndex + 1 <= props.param ?
+                <b>star </b> : 'star '}</span>
         </>
     )
 }
