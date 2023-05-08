@@ -5,6 +5,7 @@ import Rating from "./components/Rating/Rating";
 import { OnOffComponent } from './components/OnOffComponent/OnOffComponent';
 import {UnControlledAccordion} from './components/UnControlledAccordion/UnControlledAccordion';
 import {UnControlledRating} from './components/UnControlledRating/UnControlledRating';
+import {CustomSelect} from './components/CustomSelect/CustomSelect';
 
 
 function App() {
@@ -23,11 +24,12 @@ function App() {
             {/*<Rating value={2}/>*/}
             {/* <Accordion titleValue={'Menu list№ 1'} isCollapsed={true}/>
             <Accordion titleValue={'Menu list№ 2'} isCollapsed={false}/> */}
-            <OnOffComponent isOn={on} setIsOn={setOn} />
+            {/*<OnOffComponent isOn={on} setIsOn={setOn} />*/}
             {/*<UnControlledAccordion title={'My accordion'}/>
             <UnControlledRating/>*/}
-            <Rating value={ratingValue} setRatingValue={setRatingValue}/>
-            <Accordion titleValue={'Menu list№ 1'} isCollapsed={isCollapsed} items={[{title:'One', value:1}, {title:'Two', value:'2'}]} setCollapsedState={setIsCollapsed} onClick={(value:any)=>console.log(value)}/>
+            {/*<Rating value={ratingValue} setRatingValue={setRatingValue}/>
+            <Accordion titleValue={'Menu list№ 1'} isCollapsed={isCollapsed} items={[{title:'One', value:1}, {title:'Two', value:'2'}]} setCollapsedState={setIsCollapsed} onClick={(value:any)=>console.log(value)}/>*/}
+            <CustomSelect title={'Custom Select'} list={['One', 'Two', 'Three']}/>
         </>
     );
 }
