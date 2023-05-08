@@ -1,4 +1,5 @@
-import React, {useMemo, useState} from 'react';
+import React, { useState} from 'react';
+// @ts-ignore
 import s from './OnOffComponent.module.css';
 import clsx from 'clsx';
 

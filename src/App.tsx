@@ -27,7 +27,7 @@ function App() {
             {/*<UnControlledAccordion title={'My accordion'}/>
             <UnControlledRating/>*/}
             <Rating value={ratingValue} setRatingValue={setRatingValue}/>
-            <Accordion titleValue={'Menu list№ 1'} isCollapsed={isCollapsed} setCollapsedState={setIsCollapsed}/>
+            <Accordion titleValue={'Menu list№ 1'} isCollapsed={isCollapsed} items={[{title:'One', value:1}, {title:'Two', value:'2'}]} setCollapsedState={setIsCollapsed} onClick={(value:any)=>console.log(value)}/>
         </>
     );
 }

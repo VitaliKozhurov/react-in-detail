@@ -1,5 +1,10 @@
 import React from "react";
 
+type ItemType = {
+    title:string
+    value:any
+}
+
 type AccordionProps = {
     titleValue: string;
     isCollapsed?: boolean;  // опциональный параметр
@@ -8,6 +13,8 @@ type AccordionProps = {
      * @param value mean that accordion opened or closed
      */
     setCollapsedState:(value:boolean)=>void
+    items:Array<ItemType>
+    onClick:(value:any)=>void
 }
 
 function Accordion(props: AccordionProps) {
@@ -15,7 +22,7 @@ function Accordion(props: AccordionProps) {
     return (
         <>
             <AccordionTitle title={props.titleValue} setCollapsedState={()=>props.setCollapsedState(!props.isCollapsed)} />
-            {!props.isCollapsed && <AccordionBody/>}
+            {!props.isCollapsed && <AccordionBody items={props.items} onClick={props.onClick}/>}
         </>
     )
 }
@@ -30,13 +37,19 @@ function AccordionTitle(props: AccordionPropsTitle) {
     return <h3 onClick={props.setCollapsedState}>{props.title}</h3>;
 }
 
-function AccordionBody() {
+type AccordionBodyPropsType = {
+    items:ItemType[]
+    onClick:(value:any)=>void
+}
+
+function AccordionBody(props:AccordionBodyPropsType) {
     console.log('AccordionBody rendered');
     return (
         <ul>
-            <li>1</li>
-            <li>2</li>
-            <li>3</li>
+            {props.items.map((item, ind)=><li
+                key={ind}
+                onClick={()=>{props.onClick(item.value)}}
+            >{item.title}</li>)}
         </ul>
     )
 }

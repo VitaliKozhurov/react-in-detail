@@ -23,13 +23,20 @@ export const UnCollapsed: Story = {
     args: {
         isCollapsed:false,
         titleValue:'It is unCollapsed accordion',
+        items:[{title:'One', value:1}, {title:'Two', value:'2'}]
     }
 };
 
 const AccordionWithHooks = () => {
     const [value, setValue] = useState<boolean>(false);
 
-    return <Accordion titleValue={'SuperAccordion'} isCollapsed={value} setCollapsedState={setValue}/>
+    return <Accordion
+        titleValue={'SuperAccordion'}
+        isCollapsed={value}
+        setCollapsedState={setValue}
+        items={[{title:'One', value:1}, {title:'Two', value:'2'}]}
+        onClick={(currVal:any)=>console.log(currVal)}
+    />
 }
 
 export const ModeChanging: Story = {
