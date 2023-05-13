@@ -1,29 +1,34 @@
-import React, {useState} from 'react';
+import React, {useReducer} from 'react';
+import {reducer, TOGGLE_CONSTANT} from './Reducer';
 
 type PropsType = {
-    title:string
+    title: string
 }
 
 type TitlePropsType = {
-    title:string
-    onTitleClick:()=>void
+    title: string
+    onTitleClick: () => void
 }
 
-export const UnControlledAccordion:React.FC<PropsType> = (props) => {
-    const [accordionState, setAccordionState] = useState<boolean>(true);
-    const onTitleClick = () =>{
-        setAccordionState(!accordionState);
+
+export const UnControlledAccordion: React.FC<PropsType> = (props) => {
+    /*const [accordionState, setAccordionState] = useState<boolean>(true);*/
+
+    const [accordionState, dispatch] = useReducer(reducer, {collapsed:false});
+
+    const onTitleClick = () => {
+        dispatch({type:TOGGLE_CONSTANT});
     }
 
     return (
         <>
-            <AccordionTitle title={props.title} onTitleClick={onTitleClick}/>
-            {accordionState&&<AccordionBody />}
+            <AccordionTitle title={props.title} onTitleClick={onTitleClick} />
+            {accordionState.collapsed && <AccordionBody />}
         </>
     )
 };
 
-const AccordionTitle:React.FC<TitlePropsType> = (props) => {
+const AccordionTitle: React.FC<TitlePropsType> = (props) => {
     console.log('AccordionTitle rendered');
     return <h3 onClick={props.onTitleClick}>{props.title}</h3>;
 }

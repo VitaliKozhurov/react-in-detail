@@ -16,6 +16,8 @@ type CustomSelectPropsType = {
 export const CustomSelect: FC<CustomSelectPropsType> = ({value, items, onChange}) => {
         const [active, setActive] = useState<boolean>(false);
         const [hoveredElement, setHoveredElement] = useState(value);
+
+
         const selectedItem = items.find(item => item.value === value);
         const hoveredItem = items.find(item => item.value === hoveredElement);
 
