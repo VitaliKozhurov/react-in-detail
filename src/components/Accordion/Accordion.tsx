@@ -22,7 +22,7 @@ function Accordion(props: AccordionProps) {
     return (
         <>
             <AccordionTitle title={props.titleValue} setCollapsedState={()=>props.setCollapsedState(!props.isCollapsed)} />
-            {!props.isCollapsed && <AccordionBody items={props.items} onClick={props.onClick}/>}
+            {!props.isCollapsed && <AccordionBody_ items={props.items} onClick={props.onClick}/>}
         </>
     )
 }
@@ -53,5 +53,7 @@ function AccordionBody(props:AccordionBodyPropsType) {
         </ul>
     )
 }
+
+const AccordionBody_ = React.memo(AccordionBody)
 
 export default Accordion;
