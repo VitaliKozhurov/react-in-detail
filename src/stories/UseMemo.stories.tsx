@@ -65,7 +65,7 @@ const ComponentWithState = () => {
     const [users, setUsers] = useState(['Dima', 'Valera', 'Artem', 'Sveta']);
 
     const filteredUsers = useMemo(()=>{
-       return users.filter(user=>user.indexOf('a')>1)
+       return users.filter(user=>user.toLowerCase().indexOf('a')> -1)
     },[users]);
 
     return (
