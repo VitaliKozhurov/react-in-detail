@@ -1,0 +1,35 @@
+.selectBody {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    font-family: sans-serif;
+}
+
+.selectTitle {
+    padding: 10px;
+    font-size: 18px;
+    border: solid 1px #000;
+    transition: all .3s ease;
+}
+
+.selectTitle:hover{
+    background: rgba(0,0,0,0.1);
+    cursor: pointer;
+}
+
+.selectItems {
+    margin: 0;
+    padding: 0;
+}
+
+.selectItems .hovered{
+    background-color: #146fdf;
+}
+
+.selectItem {
+    list-style: none;
+    padding: 10px;
+    margin: 0;
+    border: solid 1px #000;
+    border-top: none;
+}
