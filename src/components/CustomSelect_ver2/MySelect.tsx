@@ -5,8 +5,8 @@ import s from './MySelect.module.css';
 export type ItemType = {
     value: string
     title: string
-    city:string
-    peopleCount:number
+    city?:string
+    peopleCount?:number
 }
 
 type SelectPropsType = {
@@ -71,7 +71,7 @@ export const MySelect: FC<SelectPropsType> = ({value, items, onChange}) => {
                         onMouseEnter={() => setHoverToElement(item.value)}
                         onClick={() => changeValue(item.value)}
                     >
-                        {item.city}
+                        {item.city||item.title}
                     </li>
                 ))}
             </ul>}

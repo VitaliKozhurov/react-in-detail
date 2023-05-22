@@ -1,5 +1,5 @@
 import type {Meta, StoryObj} from '@storybook/react';
-import React, {useMemo, useState} from 'react';
+import React, {useCallback, useMemo, useState} from 'react';
 
 const meta: Meta = {
     title: 'UseMemo',
@@ -18,18 +18,18 @@ const ContainerComponent = () => {
     // Для оптимизации необходимо передать сложные вычисления в функцию коллбек useMemo
     // данная функция должна вернуть результат этих вычислений, которое мемоизируется
     // в зависимости передается значение при изменении, которого необходимо провести повторное вычисление
-    result_1 = useMemo(()=>{
-        let temp =1;
+    result_1 = useMemo(() => {
+        let temp = 1;
         for (let i = 1; i <= num_1; i++) {
             let fake = 0;
-            while(fake<100000000){
+            while (fake < 100000000) {
                 fake++;
                 const fakeValue = Math.random();
             }
             temp = temp * i
         }
         return temp;
-    },[num_1])
+    }, [num_1])
 
     for (let i = 1; i <= num_2; i++) {
         result_2 = result_2 * i
@@ -64,9 +64,9 @@ const ComponentWithState = () => {
     const [counter, setCounter] = useState<number>(0);
     const [users, setUsers] = useState(['Dima', 'Valera', 'Artem', 'Sveta']);
 
-    const filteredUsers = useMemo(()=>{
-       return users.filter(user=>user.toLowerCase().indexOf('a')> -1)
-    },[users]);
+    const filteredUsers = useMemo(() => {
+        return users.filter(user => user.toLowerCase().indexOf('a') > -1)
+    }, [users]);
 
     return (
         <>
@@ -82,4 +82,50 @@ const ComponentWithState = () => {
 
 export const Count_value: Story = {
     render: () => <ComponentWithState />
+};
+
+
+type BookSecretType = {
+    addBook: () => void
+}
+
+const SecretBooks = (props: BookSecretType) => {
+    console.log('Books render')
+    return <div>
+        <button onClick={props.addBook}>Add book</button>
+
+    </div>
+}
+const Books = React.memo(SecretBooks);
+
+const UseMemoLikeUseCallback = () => {
+    const [counter, setCounter] = useState<number>(0);
+    const [books, setBooks] = useState(['React book', 'JS book', 'CSS book', 'HTML book']);
+
+    const filteredUsers = useMemo(() => {
+        return books.filter(book => book.toLowerCase().indexOf('a') > -1)
+    }, [books]);
+
+    const addBook = () => {
+        console.log(books)
+        setBooks([...books, 'Angular book']);
+    }
+
+    /*const memorizedAddBook = useMemo(() => addBook, [books]);*/
+
+    const memorizedAddBook_2 = useCallback(addBook,[books])
+
+    return (
+        <>
+            <div>
+                <div>Counter : {counter}</div>
+                <button onClick={() => setCounter(counter + 1)}>Increase counter</button>
+            </div>
+            <Books addBook={memorizedAddBook_2} />
+        </>
+    )
+}
+
+export const UseCallbackLikeUseMemo: Story = {
+    render: () => <UseMemoLikeUseCallback />
 };
