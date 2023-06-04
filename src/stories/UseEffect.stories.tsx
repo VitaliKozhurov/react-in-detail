@@ -1,8 +1,8 @@
-import type { Meta, StoryObj } from "@storybook/react";
-import { useEffect, useState } from "react";
+import type {Meta, StoryObj} from '@storybook/react';
+import {useEffect, useState} from 'react';
 
 const meta: Meta = {
-    title: "UseEffectHook",
+    title: 'UseEffectHook',
 };
 
 export default meta;
@@ -10,12 +10,13 @@ type Story = StoryObj;
 
 const UseEffectWithoutArr = () => {
     const [counter, setCounter] = useState(1);
-    console.log("Example_1");
+    console.log('Example_1');
+
     // Будет вызываться при каждом вызове функции после вмонтирования компоненты
     // Сначала отрисовка контента, потом уже useEffect
     useEffect(() => {
-        console.log("call useEffect");
-        document.title = "" + counter;
+        console.log('call useEffect');
+        document.title = '' + counter;
         // Выполняем запросы на сервер
         // Установка интервалов, асинхронный код
         // работа с баззой данных
@@ -33,11 +34,11 @@ const UseEffectWithoutArr = () => {
 const UseEffectWithoutArrDep = () => {
     const [feik, setFeik] = useState(1);
     const [counter, setCounter] = useState(1);
-    console.log("Example_2");
+    console.log('Example_2');
     // Вызывается только при изменении counter
     useEffect(() => {
-        console.log("call useEffect");
-        document.title = "" + counter + feik;
+        console.log('call useEffect');
+        document.title = '' + counter + feik;
     }, [counter]);
 
     return (
@@ -55,12 +56,12 @@ const UseEffectWithoutArrDep = () => {
 const UseEffectWithEmptyArrDep = () => {
     const [feik, setFeik] = useState(1);
     const [counter, setCounter] = useState(1);
-    console.log("Example_3");
+    console.log('Example_3');
     // Вызывается только при первом вызове
     // Первый рендер (монтирование)
     useEffect(() => {
-        console.log("call useEffect");
-        document.title = "" + counter + feik;
+        console.log('call useEffect');
+        document.title = '' + counter + feik;
     }, []);
 
     return (
@@ -75,6 +76,29 @@ const UseEffectWithEmptyArrDep = () => {
     );
 };
 
+const SetTimeOut = () => {
+    const [date, setDate] = useState<Date>(new Date);
+
+    useEffect(() => {
+        let timerId = setInterval(() => {
+            document.title = (new Date).toLocaleTimeString();
+            setDate(state => new Date)
+
+        }, 1000);
+
+        /*return () => clearInterval(timerId)*/
+    }, [])
+
+
+    return (
+        <>
+            <div>
+                Date : {date.toLocaleTimeString()}
+            </div>
+        </>
+    );
+}
+
 export const UseEff_without_arr_dep: Story = {
     render: () => <UseEffectWithoutArr />,
 };
@@ -86,3 +110,7 @@ export const UseEff_with_arr_dep: Story = {
 export const UseEff_with_empty_arr_dep: Story = {
     render: () => <UseEffectWithEmptyArrDep />,
 };
+
+export const SetTimeoutExample: Story = {
+    render: () => <SetTimeOut />
+}
