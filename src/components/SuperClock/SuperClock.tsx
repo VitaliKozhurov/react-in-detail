@@ -6,17 +6,29 @@ const getTime = (time: number) => time.toString().padStart(2, "0");
 export const SuperClock = () => {
     const [date, setDate] = useState<Date>(new Date());
     const [clock, setClock] = useState<boolean>(false);
+    const [intervalId, setIntervalID] = useState<undefined | number>(undefined);
 
     useEffect(() => {
-        let clockInterval = setInterval(() => {
+        let clockInterval = window.setInterval(() => {
             console.log("tick");
             setDate(new Date());
         }, 1000);
+        setIntervalID(clockInterval);
 
         return () => {
             clearInterval(clockInterval);
+            setIntervalID(undefined);
         };
     }, []);
+
+    const stopTime = () => {
+        clearInterval(intervalId);
+        setIntervalID(undefined);
+    };
+    const startTime = () => {
+        let interval = window.setInterval(() => setDate(new Date()), 1000);
+        setIntervalID(interval);
+    };
 
     return (
         <div className={style.main}>
@@ -28,6 +40,12 @@ export const SuperClock = () => {
                     }}
                 >
                     Change clock
+                </button>
+                <button disabled={!intervalId} onClick={stopTime}>
+                    Stop
+                </button>
+                <button disabled={!!intervalId} onClick={startTime}>
+                    Start
                 </button>
             </div>
 
